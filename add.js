@@ -2,9 +2,10 @@
 
 function add(input) {
     if(input ==='') return 0;
-let numbers = input.split(',');
+let numbers = input.replace("\n",",");
+let foo = numbers.split(',')
 let sum = 0;
-numbers.forEach(element => {
+foo.forEach(element => {
     sum=sum+parseInt(element);
 });
    return sum;
