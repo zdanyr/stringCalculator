@@ -13,5 +13,14 @@ test('The single number should return the input number ', () => {
 test('Comma separator numbers should return sum ', () => {
     const result = add("1,2")
     expect(result).toBe(3);
-    
+
+});
+
+test.each`
+   input   | expected
+   ${"1,2"} | ${3}
+   ${"1,2,3"} | ${6}
+`('returns $expected when $input is added', ({input, expected}) => {
+    const result = add(input)
+    expect(result).toBe(expected);
 });
