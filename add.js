@@ -1,14 +1,16 @@
-
-
 function add(input) {
-    if(input ==='') return 0;
-let numbers = input.replace(/\n/g, ',');
-let foo = numbers.split(',')
-let sum = 0;
-foo.forEach(element => {
-    sum=sum+parseInt(element);
-});
-   return sum;
+  if (input === "") return 0;
+  let inputWithoutBreakLine = input.replace(/\n/g, ",");
+  let numbers = inputWithoutBreakLine.split(",");
+  return sum(numbers);
 }
 
 module.exports = add;
+function sum(numbers) {
+    let sum = 0;
+    numbers.forEach(element => {
+        sum = sum + parseInt(element);
+    });
+    return sum;
+}
+

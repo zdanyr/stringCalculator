@@ -8,7 +8,7 @@ test('Empty string should return zero ', () => {
 test.each`
    input   | expected
    ${"1,2\n3"} | ${6}
-   ${"3\n5\n3,9"} | ${20}
+   ${"3\n5\n30,9"} | ${47}
 `('returns $expected when $input is comma or break line separator', ({input, expected}) => {
     const result = add(input)
     expect(result).toBe(expected);
