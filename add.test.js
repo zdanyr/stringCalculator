@@ -28,13 +28,16 @@ test.each`
 });
 
 test.each`
-input | expected
-${'1,2,3'} | ${['1','2','3']}
-${'3\n5\n30,9'} | ${['3','5','30','9']}
-`('Comma separator or break line separator should return array',({input, expected})=>{
+  input              | expected
+  ${"1,2,3"}         | ${["1", "2", "3"]}
+  ${"3\n5\n30,9,10"} | ${["3", "5", "30", "9", "10"]}
+`(
+  "returns $expected when input has comma or break line separator",
+  ({ input, expected }) => {
     const result = inputToArray(input);
     expect(result).toEqual(expected);
-});
+  }
+);
 
 test("should return sum of elements", () => {
   const toSum = [1, 2, 3, 4];
@@ -42,4 +45,8 @@ test("should return sum of elements", () => {
   expect(result).toBe(10);
 });
 
-
+test("should support different delimiters", () => {
+  const input = "//;\n1;2";
+  const result = add(input);
+  expect(result).toBe(3);
+});
