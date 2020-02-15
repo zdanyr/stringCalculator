@@ -45,5 +45,5 @@ function inputToArrayCommaBackSlashSeparator(input) {
 
 
 
-module.exports = {add, sum, inputToArray: inputToArrayCommaBackSlashSeparator};
+module.exports = {add, sum, findDelimiter,inputToArray: inputToArrayCommaBackSlashSeparator};
 

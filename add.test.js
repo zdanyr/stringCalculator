@@ -1,4 +1,4 @@
-const { add, sum, inputToArray } = require("./add");
+const { add, sum, inputToArray, findDelimiter } = require("./add");
 
 test("Empty string should return zero ", () => {
   const result = add("");
@@ -16,6 +16,12 @@ test.each`
     expect(result).toBe(expected);
   }
 );
+
+test("should support different delimiters", () => {
+  const input = "//;\n1;2";
+  const result = add(input);
+  expect(result).toBe(3);
+});
 
 test.each`
   input      | expected
@@ -45,8 +51,15 @@ test("should return sum of elements", () => {
   expect(result).toBe(10);
 });
 
-test("should support different delimiters", () => {
-  const input = "//;\n1;2";
-  const result = add(input);
-  expect(result).toBe(3);
+
+test.each`
+input | expected
+${"//;\n1;2"}|${";"}
+${"//-\n1-2-9"}|${"-"}
+`("returns $expected when $input contains custom delimiter",
+({input,expected})=>{
+  const result = findDelimiter(input);
+  expect(result).toBe(expected)
 });
+
+
