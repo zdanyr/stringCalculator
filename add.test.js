@@ -1,4 +1,10 @@
-const { add, sum, inputToArray, findDelimiter } = require("./add");
+const {
+  add,
+  sum,
+  inputToArray,
+  findDelimiter,
+  splitInputReturnAfterBreakLine
+} = require("./add");
 
 test("Empty string should return zero ", () => {
   const result = add("");
@@ -51,15 +57,26 @@ test("should return sum of elements", () => {
   expect(result).toBe(10);
 });
 
+test.each`
+  input           | expected
+  ${"//;\n1;2"}   | ${";"}
+  ${"//-\n1-2-9"} | ${"-"}
+`(
+  "returns $expected when $input contains custom delimiter",
+  ({ input, expected }) => {
+    const result = findDelimiter(input);
+    expect(result).toBe(expected);
+  }
+);
 
 test.each`
-input | expected
-${"//;\n1;2"}|${";"}
-${"//-\n1-2-9"}|${"-"}
-`("returns $expected when $input contains custom delimiter",
-({input,expected})=>{
-  const result = findDelimiter(input);
-  expect(result).toBe(expected)
-});
-
-
+  input           | expected
+  ${"//;\n1;2"}   | ${"1;2"}
+  ${"//-\n1-2-9"} | ${"1-2-9"}
+`(
+  "returns $expected when $input contains break line",
+  ({ input, expected }) => {
+    const result = splitInputReturnAfterBreakLine(input);
+    expect(result).toBe(expected);
+  }
+);
