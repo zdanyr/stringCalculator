@@ -1,9 +1,10 @@
 const {
   add,
   sum,
-  inputToArray,
+  inputToArrayCommaBackSlashSeparator,
   findDelimiter,
-  splitInputReturnAfterBreakLine
+  splitInputReturnAfterBreakLine,
+  convertInputWithCustomSeparatorIntoArray
 } = require("./add");
 
 test("Empty string should return zero ", () => {
@@ -46,7 +47,7 @@ test.each`
 `(
   "returns $expected when input has comma or break line separator",
   ({ input, expected }) => {
-    const result = inputToArray(input);
+    const result = inputToArrayCommaBackSlashSeparator(input);
     expect(result).toEqual(expected);
   }
 );
@@ -80,3 +81,17 @@ test.each`
     expect(result).toBe(expected);
   }
 );
+
+test.each`
+  input           | delimiter | expected
+  ${"1;2"}   | ${";"}    | ${[ '1', '2' ]}
+  ${"1-2-9"} | ${"-"}    | ${[ '1', '2', '9' ]}
+`(
+  "returns $expected when $input should be converted in array using custom delimiter",
+  ({ input, delimiter, expected }) => {
+    const result = convertInputWithCustomSeparatorIntoArray(input, delimiter);\
+    expect([...result]).toMatchObject(expected)
+  }
+);
+
+

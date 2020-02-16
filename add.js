@@ -22,7 +22,7 @@ function sum(numbers) {
 function handleCustomDelimiter(userInput) {
   let userCustomDelimiter = findDelimiter(userInput);
   let inputToSum = splitInputReturnAfterBreakLine(userInput);
-  convertInputWithCustomSeparatorIntoArray(inputToSum, userCustomDelimiter);
+  numbers = convertInputWithCustomSeparatorIntoArray(inputToSum, userCustomDelimiter);
 }
 
 function findDelimiter(userInput) {
@@ -38,6 +38,8 @@ function convertInputWithCustomSeparatorIntoArray(
   usingDelimiter
 ) {
   numbers = toConvertIntoArray.split(usingDelimiter);
+  console.log({numbers})
+  return numbers;
 }
 
 function inputToArrayCommaBackSlashSeparator(input) {
@@ -51,5 +53,6 @@ module.exports = {
   sum,
   findDelimiter,
   splitInputReturnAfterBreakLine,
-  inputToArray: inputToArrayCommaBackSlashSeparator
+  inputToArrayCommaBackSlashSeparator,
+  convertInputWithCustomSeparatorIntoArray
 };
