@@ -1,4 +1,5 @@
 let isCustomSeparatorFormat = /^\/\/.\n/; //Eg. //;\n1;2;7  //-\n1-2
+isManyCustomSeparatorsAnyLengthFormat = /^\/\/(\[.+\])+\n/
 let numbers;
 
 function add(input) {
@@ -9,6 +10,11 @@ function add(input) {
   }
   numbers = inputToArrayCommaBackSlashSeparator(input);
   return sum(numbers);
+}
+
+function isOneOrManyCustomDelimitersAnyLength(userInput) {
+    console.log(this.isManyCustomSeparatorsAnyLengthFormat.test(userInput))
+    return (this.isManyCustomSeparatorsAnyLengthFormat.test(userInput))
 }
 
 function sum(numbers) {
@@ -38,7 +44,6 @@ function convertInputWithCustomSeparatorIntoArray(
   usingDelimiter
 ) {
   numbers = toConvertIntoArray.split(usingDelimiter);
-  console.log({numbers})
   return numbers;
 }
 
@@ -54,5 +59,6 @@ module.exports = {
   findDelimiter,
   splitInputReturnAfterBreakLine,
   inputToArrayCommaBackSlashSeparator,
-  convertInputWithCustomSeparatorIntoArray
+  convertInputWithCustomSeparatorIntoArray,
+  isOneOrManyCustomDelimitersAnyLength
 };
