@@ -1,6 +1,7 @@
 const {
   handleOneOrManyCustomDelimitersAnyLength,
-  removeCustomDelimiterFromInput
+  removeCustomDelimiterFromInput,
+  removeAllCustomDelimitersFromInput
 } = require("./handleOneOrManyCustomDelimitersAnyLength");
 
 // test.each`
@@ -23,6 +24,13 @@ test.each`
   const delimiter = "a";
   const result = removeCustomDelimiterFromInput(input, delimiter);
   expect(result).toBe(expected);
+});
+
+test("removeAllCustomDelimitersFromInput", () => {
+  let numbers = "1a2a3b3";
+  const customDelimiters = ["a", "b"];
+  const result = removeAllCustomDelimitersFromInput(numbers, customDelimiters);
+  expect(result).toBe("1,2,3,3");
 });
 
 

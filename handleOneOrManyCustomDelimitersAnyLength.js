@@ -1,27 +1,27 @@
 const { splitInputReturnAfterBreakLine } = require("./splitInputReturnAfterBreakLine");
-let { numbers } = require("./add");
 
 let inputBeforeBreakLineAsArray = new Array();
-let customDelimiter = new Array();
 
 function handleOneOrManyCustomDelimitersAnyLength(userInput) {
-  handleInputBeforeBreakLine(userInput);
-  handleInputAfterBreakLine(userInput);
+  let customDelimiters = handleInputBeforeBreakLine(userInput);
+  handleInputAfterBreakLine(userInput, customDelimiters);
 }
 
 //no tested
 function handleInputBeforeBreakLine(userInput) {
   let inputBeforeBreakLine = splitInputReturnBeforeBreakLine(userInput); //[a][b][c][d]
   inputBeforeBreakLineAsArray = inputBeforeBreakLine.split("");
-  findAllDelimitersFromInput();
+  let customDelimiters = findAllDelimitersFromInput();
+  return customDelimiters;
 }
 //no tested
-function handleInputAfterBreakLine(userInput) {
-  numbers = splitInputReturnAfterBreakLine(userInput);
-  removeAllCustomDelimitersFromInput();
+function handleInputAfterBreakLine(userInput, customDelimiters) {
+  let numbers = splitInputReturnAfterBreakLine(userInput);
+  removeAllCustomDelimitersFromInput(numbers, customDelimiters);
 }
 //no tested
 function findAllDelimitersFromInput() {
+  let customDelimiter = new Array();
   for (let i = 0; i < inputBeforeBreakLineAsArray.length; i++) {
     customDelimiter[i] = findCustomDelimiter(inputBeforeBreakLineAsArray);
     replaceCustomDelimiterWithEmptySpace(
@@ -29,6 +29,7 @@ function findAllDelimitersFromInput() {
       customDelimiter[i]
     );
   }
+  return customDelimiter;
 }
 //no tested
 function splitInputReturnBeforeBreakLine(userInput) {
@@ -54,12 +55,13 @@ function replaceCustomDelimiterWithEmptySpace(userInputArray, customDelimiter) {
     .split("");
 }
 //no tested
-function removeAllCustomDelimitersFromInput() {
-  for (let i = 0; i < customDelimiter.length; i++) {
-    numbers = removeCustomDelimiterFromInput(numbers, customDelimiter[i]);
+function removeAllCustomDelimitersFromInput(numbers, customDelimiters) {
+  for (let i = 0; i < customDelimiters.length; i++) {
+    numbers = removeCustomDelimiterFromInput(numbers, customDelimiters[i]);
   }
+  return numbers;
 }
-//no tested
+
 function removeCustomDelimiterFromInput(
   userInputWithManyDelimiters,
   usingDelimiter
@@ -69,11 +71,11 @@ function removeCustomDelimiterFromInput(
     delimiterWithoutSpecialCharacters,
     "gi"
   );
-  numbers = userInputWithManyDelimiters.replace(
+  userInputWithManyDelimiters = userInputWithManyDelimiters.replace(
     delimiterWithoutSpecialCharactersAsREx,
     ","
   );
-  return numbers;
+  return userInputWithManyDelimiters;
 }
 //no tested
 function escapeRegExp(string) {
@@ -84,4 +86,5 @@ function escapeRegExp(string) {
 module.exports = {
   handleOneOrManyCustomDelimitersAnyLength,
   removeCustomDelimiterFromInput,
+  removeAllCustomDelimitersFromInput,
 };

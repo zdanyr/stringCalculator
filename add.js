@@ -4,7 +4,6 @@ const { handleOneOrManyCustomDelimitersAnyLength } = require("./handleOneOrManyC
 
 let isCustomSeparatorFormat = /^\/\/.\n/; //Eg. //;\n1;2;7  //-\n1-2
 isManyCustomSeparatorsAnyLengthFormat = /^\/\/(\[.+\])+\n/;
-let numbers;
 // let inputBeforeBreakLineAsArray = new Array;
 // exports.inputBeforeBreakLineAsArray = inputBeforeBreakLineAsArray;
 // let customDelimiter = new Array;
@@ -13,18 +12,18 @@ let numbers;
 function add(input) {
   if (input === "") return 0;
   if (isCustomSeparator(input)) {
-    handleCustomDelimiter(input);
-    return sum(numbers);
+    let arrayOfNumbers = handleCustomDelimiter(input);
+    return sum(arrayOfNumbers);
   }
 
   if (isOneOrManyCustomDelimitersAnyLength(input)) {
     handleOneOrManyCustomDelimitersAnyLength(input);
-    numbers = numbers.split(',');
+    let numbers = numbers.split(',');
     return sum(numbers);
   }
 
-  numbers = inputToArrayCommaBackSlashSeparator(input);
-  return sum(numbers);
+  let arrayOfNumbers = inputToArrayCommaBackSlashSeparator(input);
+  return sum(arrayOfNumbers);
 }
 
 function isCustomSeparator(input) {
@@ -46,7 +45,8 @@ function sum(numbers) {
 function handleCustomDelimiter(userInput) {
   let userCustomDelimiter = findDelimiter(userInput);
   let inputToSum = splitInputReturnAfterBreakLine(userInput);
-  numbers = convertInputWithCustomSeparatorIntoArray(inputToSum, userCustomDelimiter);
+  let arrayOfNumbers = convertInputWithCustomSeparatorIntoArray(inputToSum, userCustomDelimiter);
+  return arrayOfNumbers;
 }
 
 function findDelimiter(userInput) {
@@ -57,13 +57,13 @@ function convertInputWithCustomSeparatorIntoArray(
   toConvertIntoArray,
   usingDelimiter
 ) {
-  numbers = toConvertIntoArray.split(usingDelimiter);
+  let numbers = toConvertIntoArray.split(usingDelimiter);
   return numbers;
 }
 
 function inputToArrayCommaBackSlashSeparator(input) {
   let inputWithoutBreakLine = input.replace(/\n/g, ",");
-  numbers = inputWithoutBreakLine.split(",");
+  let numbers = inputWithoutBreakLine.split(",");
   return numbers;
 }
 
@@ -76,5 +76,4 @@ module.exports = {
   convertInputWithCustomSeparatorIntoArray,
   isOneOrManyCustomDelimitersAnyLength,
   isCustomSeparator,
-  numbers
 };
