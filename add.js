@@ -4,7 +4,7 @@ let numbers;
 
 function add(input) {
   if (input === "") return 0;
-  if (input.match(isCustomSeparatorFormat)) {
+  if (isCustomSeparator(input)) {
     handleCustomDelimiter(input);
     return sum(numbers);
   }
@@ -12,9 +12,12 @@ function add(input) {
   return sum(numbers);
 }
 
+function isCustomSeparator(input) {
+    return isCustomSeparatorFormat.test(input);
+}
+
 function isOneOrManyCustomDelimitersAnyLength(userInput) {
-    console.log(this.isManyCustomSeparatorsAnyLengthFormat.test(userInput))
-    return (this.isManyCustomSeparatorsAnyLengthFormat.test(userInput))
+    return (isManyCustomSeparatorsAnyLengthFormat.test(userInput))
 }
 
 function sum(numbers) {
@@ -60,5 +63,6 @@ module.exports = {
   splitInputReturnAfterBreakLine,
   inputToArrayCommaBackSlashSeparator,
   convertInputWithCustomSeparatorIntoArray,
-  isOneOrManyCustomDelimitersAnyLength
+  isOneOrManyCustomDelimitersAnyLength,
+  isCustomSeparator
 };

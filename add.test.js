@@ -5,7 +5,8 @@ const {
   findDelimiter,
   splitInputReturnAfterBreakLine,
   convertInputWithCustomSeparatorIntoArray,
-  isOneOrManyCustomDelimitersAnyLength
+  isOneOrManyCustomDelimitersAnyLength,
+  isCustomSeparator
 } = require("./add");
 
 test("Empty string should return zero ", () => {
@@ -57,6 +58,16 @@ test("should return sum of elements", () => {
   const toSum = [1, 2, 3, 4];
   const result = sum(toSum);
   expect(result).toBe(10);
+});
+
+test.each`
+  input           | expected
+  ${"//;\n1;2"}   | ${true}
+  ${"//-\n1-2-9"} | ${true}
+  ${"/;\n1;2"}    | ${false}
+`("should return $expected when $input matches regular expression", ({ input, expected }) => {
+  const result = isCustomSeparator(input);
+  expect(result).toBe(expected);
 });
 
 test.each`
