@@ -3,11 +3,14 @@ const {
   sum,
   inputToArrayCommaBackSlashSeparator,
   findDelimiter,
-  splitInputReturnAfterBreakLine,
   convertInputWithCustomSeparatorIntoArray,
   isOneOrManyCustomDelimitersAnyLength,
   isCustomSeparator
 } = require("./add");
+
+const {
+handleOneOrManyCustomDelimitersAnyLength
+} = require("./handleOneOrManyCustomDelimitersAnyLength");
 
 test("Empty string should return zero ", () => {
   const result = add("");
@@ -20,17 +23,6 @@ test.each`
   ${"3\n5\n30,9"} | ${47}
 `(
   "returns $expected when $input is comma or break line separator",
-  ({ input, expected }) => {
-    const result = add(input);
-    expect(result).toBe(expected);
-  }
-);
-
-test.each`
-  input                   | expected
-  ${"//[***]\n1***2***3"} | ${6}
-`(
-  "returns $expected when $input is custom delimiter",
   ({ input, expected }) => {
     const result = add(input);
     expect(result).toBe(expected);
@@ -92,18 +84,6 @@ test.each`
   "returns $expected when $input contains custom delimiter",
   ({ input, expected }) => {
     const result = findDelimiter(input);
-    expect(result).toBe(expected);
-  }
-);
-
-test.each`
-  input           | expected
-  ${"//;\n1;2"}   | ${"1;2"}
-  ${"//-\n1-2-9"} | ${"1-2-9"}
-`(
-  "returns $expected when $input contains break line",
-  ({ input, expected }) => {
-    const result = splitInputReturnAfterBreakLine(input);
     expect(result).toBe(expected);
   }
 );
