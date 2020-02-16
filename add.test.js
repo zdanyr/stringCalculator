@@ -26,6 +26,17 @@ test.each`
   }
 );
 
+test.each`
+  input                   | expected
+  ${"//[***]\n1***2***3"} | ${6}
+`(
+  "returns $expected when $input is custom delimiter",
+  ({ input, expected }) => {
+    const result = add(input);
+    expect(result).toBe(expected);
+  }
+);
+
 test("should support different delimiters", () => {
   const input = "//;\n1;2";
   const result = add(input);
@@ -65,10 +76,13 @@ test.each`
   ${"//;\n1;2"}   | ${true}
   ${"//-\n1-2-9"} | ${true}
   ${"/;\n1;2"}    | ${false}
-`("should return $expected when $input matches regular expression", ({ input, expected }) => {
-  const result = isCustomSeparator(input);
-  expect(result).toBe(expected);
-});
+`(
+  "should return $expected when $input matches regular expression",
+  ({ input, expected }) => {
+    const result = isCustomSeparator(input);
+    expect(result).toBe(expected);
+  }
+);
 
 test.each`
   input           | expected
