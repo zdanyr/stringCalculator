@@ -80,4 +80,8 @@ function escapeRegExp(string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
 }
 
-exports.handleOneOrManyCustomDelimitersAnyLength = handleOneOrManyCustomDelimitersAnyLength;
+
+module.exports = {
+  handleOneOrManyCustomDelimitersAnyLength,
+  removeCustomDelimiterFromInput,
+};

@@ -8,10 +8,6 @@ const {
   isCustomSeparator
 } = require("./add");
 
-const {
-handleOneOrManyCustomDelimitersAnyLength
-} = require("./handleOneOrManyCustomDelimitersAnyLength");
-
 test("Empty string should return zero ", () => {
   const result = add("");
   expect(result).toBe(0);
