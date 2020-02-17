@@ -17,9 +17,8 @@ function add(input) {
   }
 
   if (isOneOrManyCustomDelimitersAnyLength(input)) {
-    handleOneOrManyCustomDelimitersAnyLength(input);
-    let numbers = numbers.split(',');
-    return sum(numbers);
+    let inputAsArray = handleOneOrManyCustomDelimitersAnyLength(input);
+    return sum(inputAsArray);
   }
 
   let arrayOfNumbers = inputToArrayCommaBackSlashSeparator(input);

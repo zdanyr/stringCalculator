@@ -1,19 +1,20 @@
 const {
   handleOneOrManyCustomDelimitersAnyLength,
   removeCustomDelimiterFromInput,
-  removeAllCustomDelimitersFromInput
+  removeAllCustomDelimitersFromInput,
+  handleInputAfterBreakLine,
 } = require("./handleOneOrManyCustomDelimitersAnyLength");
 
-// test.each`
-//   input                   | expected
-//   ${"//[***]\n1***2***3"} | ${6}
-// `(
-//   "returns $expected when $input is custom delimiter",
-//   ({ input, expected }) => {
-//     const result = handleOneOrManyCustomDelimitersAnyLength(input);
-//     expect(result).toBe(expected);
-//   }
-// );
+test.each`
+  input                   | expected
+  ${"//[***]\n1***2***3"} | ${["1", "2", "3"]}
+`(
+  "returns $expected when $input is custom delimiter",
+  ({ input, expected }) => {
+    const result = handleOneOrManyCustomDelimitersAnyLength(input);
+    expect([...result]).toMatchObject(expected);
+  }
+);
 
 test.each`
   input             | expected
@@ -32,5 +33,14 @@ test("removeAllCustomDelimitersFromInput", () => {
   const result = removeAllCustomDelimitersFromInput(numbers, customDelimiters);
   expect(result).toBe("1,2,3,3");
 });
+
+test("handleInputAfterBreakLine", () => {
+  let userInput = "1a2a3b3";
+  const customDelimiters = ["a", "b"];
+  const result = removeAllCustomDelimitersFromInput(userInput, customDelimiters);
+  expect(result).toBe("1,2,3,3");
+});
+
+
 
 

@@ -107,3 +107,19 @@ test.each`
     expect(result).toBe(expected);
   }
 );
+
+test.each`
+  input                   | expected
+  ${"//[*][%]\n1*2%3"} | ${6}
+  ${"//[***]\n1***2***3"} | ${6}
+  ${"//[!*--*]\n1!*--*20!*--*3"} | ${24}
+  ${"//[**1*][%%]\n1**1*2%%3"} | ${6}
+  ${"//[/1*][%]\n1/1*2%3"} | ${6}
+  ${"//[*1*][%]\n1*1*2%3"} | ${6}
+`(
+  "returns $expected when $input is custom delimiter",
+  ({ input, expected }) => {
+    const result = add(input);
+    expect(result).toBe(expected);
+  }
+);

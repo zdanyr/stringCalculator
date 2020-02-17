@@ -1,10 +1,12 @@
 const { splitInputReturnAfterBreakLine } = require("./splitInputReturnAfterBreakLine");
+const { sum } = require("./add");
 
 let inputBeforeBreakLineAsArray = new Array();
 
 function handleOneOrManyCustomDelimitersAnyLength(userInput) {
   let customDelimiters = handleInputBeforeBreakLine(userInput);
-  handleInputAfterBreakLine(userInput, customDelimiters);
+  let numbersAsArray = handleInputAfterBreakLine(userInput, customDelimiters);
+  return numbersAsArray;
 }
 
 //no tested
@@ -17,7 +19,10 @@ function handleInputBeforeBreakLine(userInput) {
 //no tested
 function handleInputAfterBreakLine(userInput, customDelimiters) {
   let numbers = splitInputReturnAfterBreakLine(userInput);
-  removeAllCustomDelimitersFromInput(numbers, customDelimiters);
+  let inputSeparatedByComma = removeAllCustomDelimitersFromInput(numbers, customDelimiters);
+
+  inputSeparatedByComma = inputSeparatedByComma.split(',')
+  return inputSeparatedByComma;
 }
 //no tested
 function findAllDelimitersFromInput() {
@@ -54,7 +59,7 @@ function replaceCustomDelimiterWithEmptySpace(userInputArray, customDelimiter) {
     .slice(positionOfCustomDelimiter + customDelimiter.length + 1)
     .split("");
 }
-//no tested
+
 function removeAllCustomDelimitersFromInput(numbers, customDelimiters) {
   for (let i = 0; i < customDelimiters.length; i++) {
     numbers = removeCustomDelimiterFromInput(numbers, customDelimiters[i]);
@@ -87,4 +92,5 @@ module.exports = {
   handleOneOrManyCustomDelimitersAnyLength,
   removeCustomDelimiterFromInput,
   removeAllCustomDelimitersFromInput,
+  handleInputAfterBreakLine,
 };
