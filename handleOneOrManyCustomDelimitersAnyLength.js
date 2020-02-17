@@ -13,7 +13,7 @@ function handleOneOrManyCustomDelimitersAnyLength(userInput) {
 
 //no tested
 function handleInputBeforeBreakLine(userInput) {
-  let inputBeforeBreakLine = splitInputReturnBeforeBreakLine(userInput); //[a][b][c][d]
+  let inputBeforeBreakLine = splitInputReturnBeforeBreakLine(userInput);
   let inputBeforeBreakLineAsArray = inputBeforeBreakLine.split('');
   let customDelimiters = findAllDelimitersFromInput(
     inputBeforeBreakLineAsArray,
@@ -31,11 +31,8 @@ function handleInputAfterBreakLine(userInput, customDelimiters) {
   inputSeparatedByComma = inputSeparatedByComma.split(',');
   return inputSeparatedByComma;
 }
-//no tested
+
 function findAllDelimitersFromInput(inputBeforeBreakLineAsArray) {
-  console.log(`
-  inputBeforeBreakLineAsArray: ${inputBeforeBreakLineAsArray}
-  `);
   let customDelimiter = new Array();
   for (let i = 0; i < inputBeforeBreakLineAsArray.length; i++) {
     customDelimiter[i] = findCustomDelimiter(inputBeforeBreakLineAsArray);
@@ -44,9 +41,6 @@ function findAllDelimitersFromInput(inputBeforeBreakLineAsArray) {
       customDelimiter[i],
     );
   }
-  console.log(`
-  customDelimiter:${customDelimiter}
-  `);
   return customDelimiter;
 }
 
