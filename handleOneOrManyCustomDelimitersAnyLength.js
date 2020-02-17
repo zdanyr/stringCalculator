@@ -104,4 +104,5 @@ module.exports = {
   handleInputAfterBreakLine,
   replaceCustomDelimiterWithEmptySpace,
   findCustomDelimiter,
+  splitInputReturnBeforeBreakLine,
 };

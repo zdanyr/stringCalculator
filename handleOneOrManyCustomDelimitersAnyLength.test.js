@@ -4,7 +4,7 @@ const {
   removeAllCustomDelimitersFromInput,
   replaceCustomDelimiterWithEmptySpace,
   findCustomDelimiter,
-  handleInputAfterBreakLine,
+  splitInputReturnBeforeBreakLine,
 } = require('./handleOneOrManyCustomDelimitersAnyLength');
 
 test.each`
@@ -67,5 +67,14 @@ it.each`
   ${['/', '/', '[', '*', '1', '*', ']', '[', '%', ']']} | ${'*1*'}
 `('findCustomDelimiter', ({ input, expected }) => {
   const result = findCustomDelimiter(input);
+  expect(result).toBe(expected);
+});
+
+it.each`
+  input                          | expected
+  ${'//[/1*][%]\n1/1*2%3'}       | ${'//[/1*][%]\n'}
+  ${'//[***][#][%]\n10***2#3%4'} | ${'//[***][#][%]\n'}
+`('splitInputReturnBeforeBreakLine', ({ input, expected }) => {
+  const result = splitInputReturnBeforeBreakLine(input);
   expect(result).toBe(expected);
 });
