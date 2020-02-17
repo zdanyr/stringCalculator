@@ -1,32 +1,29 @@
-const { splitInputReturnAfterBreakLine } = require("./splitInputReturnAfterBreakLine");
+const {
+  splitInputReturnAfterBreakLine,
+} = require('./splitInputReturnAfterBreakLine');
 
-const { handleOneOrManyCustomDelimitersAnyLength } = require("./handleOneOrManyCustomDelimitersAnyLength");
+const {
+  handleOneOrManyCustomDelimitersAnyLength,
+} = require('./handleOneOrManyCustomDelimitersAnyLength');
 
-let isCustomSeparatorFormat = /^\/\/.\n/; //Eg. //;\n1;2;7  //-\n1-2
+const { isCustomSeparator } = require('./utils');
+
 isManyCustomSeparatorsAnyLengthFormat = /^\/\/(\[.+\])+\n/;
-// let inputBeforeBreakLineAsArray = new Array;
-// exports.inputBeforeBreakLineAsArray = inputBeforeBreakLineAsArray;
-// let customDelimiter = new Array;
-// exports.customDelimiter = customDelimiter;
 
 function add(input) {
-  if (input === "") return 0;
+  if (input === '') return 0;
   if (isCustomSeparator(input)) {
-    let arrayOfNumbers = handleCustomDelimiter(input);
+    const arrayOfNumbers = handleCustomDelimiter(input);
     return sum(arrayOfNumbers);
   }
 
   if (isOneOrManyCustomDelimitersAnyLength(input)) {
-    let inputAsArray = handleOneOrManyCustomDelimitersAnyLength(input);
+    const inputAsArray = handleOneOrManyCustomDelimitersAnyLength(input);
     return sum(inputAsArray);
   }
 
-  let arrayOfNumbers = inputToArrayCommaBackSlashSeparator(input);
+  const arrayOfNumbers = inputToArrayCommaBackSlashSeparator(input);
   return sum(arrayOfNumbers);
-}
-
-function isCustomSeparator(input) {
-  return isCustomSeparatorFormat.test(input);
 }
 
 function isOneOrManyCustomDelimitersAnyLength(userInput) {
@@ -44,7 +41,10 @@ function sum(numbers) {
 function handleCustomDelimiter(userInput) {
   let userCustomDelimiter = findDelimiter(userInput);
   let inputToSum = splitInputReturnAfterBreakLine(userInput);
-  let arrayOfNumbers = convertInputWithCustomSeparatorIntoArray(inputToSum, userCustomDelimiter);
+  let arrayOfNumbers = convertInputWithCustomSeparatorIntoArray(
+    inputToSum,
+    userCustomDelimiter,
+  );
   return arrayOfNumbers;
 }
 
@@ -54,15 +54,15 @@ function findDelimiter(userInput) {
 
 function convertInputWithCustomSeparatorIntoArray(
   toConvertIntoArray,
-  usingDelimiter
+  usingDelimiter,
 ) {
   let numbers = toConvertIntoArray.split(usingDelimiter);
   return numbers;
 }
 
 function inputToArrayCommaBackSlashSeparator(input) {
-  let inputWithoutBreakLine = input.replace(/\n/g, ",");
-  let numbers = inputWithoutBreakLine.split(",");
+  let inputWithoutBreakLine = input.replace(/\n/g, ',');
+  let numbers = inputWithoutBreakLine.split(',');
   return numbers;
 }
 
@@ -74,5 +74,4 @@ module.exports = {
   inputToArrayCommaBackSlashSeparator,
   convertInputWithCustomSeparatorIntoArray,
   isOneOrManyCustomDelimitersAnyLength,
-  isCustomSeparator,
 };

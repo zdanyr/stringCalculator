@@ -6,6 +6,7 @@ const {
   findCustomDelimiter,
   splitInputReturnBeforeBreakLine,
   findAllDelimitersFromInput,
+  handleInputAfterBreakLine,
 } = require('./handleOneOrManyCustomDelimitersAnyLength');
 
 test.each`
@@ -78,3 +79,27 @@ it.each`
   const result = findAllDelimitersFromInput(input);
   expect([...result]).toMatchObject(expected);
 });
+
+// it.each`
+//   input                   | customDelimiters | expected
+//   ${'//[***]\n1***2***3'} | ${'***'}         | ${['1', '', '', '2', '', '', '3']}
+// `('handleInputAfterBreakLine', ({ input, customDelimiters, expected }) => {
+//   const result = handleInputAfterBreakLine(input, customDelimiters);
+//   expect(result).toBe(expected);
+// });
+
+// function handleInputAfterBreakLine(userInput, customDelimiters) {
+//   console.log(`
+//   userInput: ${userInput}
+//   customDelimiters: ${customDelimiters}
+//   `);
+//   let numbers = splitInputReturnAfterBreakLine(userInput);
+//   let inputSeparatedByComma = removeAllCustomDelimitersFromInput(
+//     numbers,
+//     customDelimiters,
+//   );
+
+//   inputSeparatedByComma = inputSeparatedByComma.split(',');
+//   console.log(`inputSeparatedByComma: ${inputSeparatedByComma}`);
+//   return inputSeparatedByComma;
+// }
