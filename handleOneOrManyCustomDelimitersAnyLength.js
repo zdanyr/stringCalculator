@@ -48,7 +48,7 @@ function splitInputReturnBeforeBreakLine(userInput) {
   let positionOfSlashN = userInput.indexOf('\n');
   return userInput.substr(0, positionOfSlashN + 1);
 }
-//no tested
+
 function findCustomDelimiter(inputBeforeBreakAsArray) {
   let openBracket = inputBeforeBreakAsArray.indexOf('[');
   let closeBracket = inputBeforeBreakAsArray.indexOf(']');
@@ -103,4 +103,5 @@ module.exports = {
   removeAllCustomDelimitersFromInput,
   handleInputAfterBreakLine,
   replaceCustomDelimiterWithEmptySpace,
+  findCustomDelimiter,
 };

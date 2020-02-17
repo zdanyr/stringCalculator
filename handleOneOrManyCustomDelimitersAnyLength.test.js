@@ -3,6 +3,7 @@ const {
   removeCustomDelimiterFromInput,
   removeAllCustomDelimitersFromInput,
   replaceCustomDelimiterWithEmptySpace,
+  findCustomDelimiter,
   handleInputAfterBreakLine,
 } = require('./handleOneOrManyCustomDelimitersAnyLength');
 
@@ -45,7 +46,7 @@ test('handleInputAfterBreakLine', () => {
   expect(result).toBe('1,2,3,3');
 });
 
-test.each`
+it.each`
   input                                                           | customDelimiter | expected
   ${['/', '/', '[', '*', ']', '[', '%', ']']}                     | ${'*'}          | ${['[', '%', ']']}
   ${['/', '/', '[', '*', '*', '*', ']']}                          | ${'***'}        | ${[]}
@@ -59,3 +60,12 @@ test.each`
     expect([...result]).toMatchObject(expected);
   },
 );
+
+it.each`
+  input                                                 | expected
+  ${['/', '/', '[', '*', '*', '*', ']']}                | ${'***'}
+  ${['/', '/', '[', '*', '1', '*', ']', '[', '%', ']']} | ${'*1*'}
+`('findCustomDelimiter', ({ input, expected }) => {
+  const result = findCustomDelimiter(input);
+  expect(result).toBe(expected);
+});
