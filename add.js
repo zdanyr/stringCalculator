@@ -6,24 +6,28 @@ const {
   handleOneOrManyCustomDelimitersAnyLength,
 } = require('./handleOneOrManyCustomDelimitersAnyLength');
 
-const { isCustomSeparator } = require('./utils');
+const { isCustomSeparator, isCommaOrBreakLineSeparator } = require('./utils');
 
 isManyCustomSeparatorsAnyLengthFormat = /^\/\/(\[.+\])+\n/;
 
 function add(input) {
+  let arrayOfNumbers;
+
   if (input === '') return 0;
   if (isCustomSeparator(input)) {
-    const arrayOfNumbers = handleCustomDelimiter(input);
+    arrayOfNumbers = handleCustomDelimiter(input);
     return sum(arrayOfNumbers);
   }
 
   if (isOneOrManyCustomDelimitersAnyLength(input)) {
-    const inputAsArray = handleOneOrManyCustomDelimitersAnyLength(input);
-    return sum(inputAsArray);
+    arrayOfNumbers = handleOneOrManyCustomDelimitersAnyLength(input);
+    return sum(arrayOfNumbers);
   }
 
-  const arrayOfNumbers = inputToArrayCommaBackSlashSeparator(input);
-  return sum(arrayOfNumbers);
+  if (isCommaOrBreakLineSeparator(input)) {
+    arrayOfNumbers = inputToArrayCommaBackSlashSeparator(input);
+    return sum(arrayOfNumbers);
+  }
 }
 
 function isOneOrManyCustomDelimitersAnyLength(userInput) {
