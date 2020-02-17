@@ -33,6 +33,9 @@ function handleInputAfterBreakLine(userInput, customDelimiters) {
 }
 //no tested
 function findAllDelimitersFromInput(inputBeforeBreakLineAsArray) {
+  console.log(`
+  inputBeforeBreakLineAsArray: ${inputBeforeBreakLineAsArray}
+  `);
   let customDelimiter = new Array();
   for (let i = 0; i < inputBeforeBreakLineAsArray.length; i++) {
     customDelimiter[i] = findCustomDelimiter(inputBeforeBreakLineAsArray);
@@ -41,9 +44,12 @@ function findAllDelimitersFromInput(inputBeforeBreakLineAsArray) {
       customDelimiter[i],
     );
   }
+  console.log(`
+  customDelimiter:${customDelimiter}
+  `);
   return customDelimiter;
 }
-//no tested
+
 function splitInputReturnBeforeBreakLine(userInput) {
   let positionOfSlashN = userInput.indexOf('\n');
   return userInput.substr(0, positionOfSlashN + 1);
@@ -105,4 +111,5 @@ module.exports = {
   replaceCustomDelimiterWithEmptySpace,
   findCustomDelimiter,
   splitInputReturnBeforeBreakLine,
+  findAllDelimitersFromInput,
 };
