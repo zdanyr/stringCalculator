@@ -7,7 +7,7 @@ const {
 } = require('./handleOneOrManyCustomDelimitersAnyLength');
 
 const {
-  isCustomSeparator,
+  isSingleCustomSeparator,
   isCommaOrBreakLineSeparator,
   isOneOrManyCustomDelimitersAnyLength,
 } = require('./utils');
@@ -19,7 +19,7 @@ function cleanUpInput(input) {
     arrayOfNumbers = 0;
   }
 
-  if (isCustomSeparator(input)) {
+  if (isSingleCustomSeparator(input)) {
     arrayOfNumbers = handleCustomDelimiter(input);
   }
 

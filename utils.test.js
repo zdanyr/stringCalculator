@@ -1,5 +1,5 @@
 const {
-  isCustomSeparator,
+  isSingleCustomSeparator,
   isCommaOrBreakLineSeparator,
   isOneOrManyCustomDelimitersAnyLength,
 } = require('./utils');
@@ -10,9 +10,9 @@ test.each`
   ${'//-\n1-2-9'} | ${true}
   ${'/;\n1;2'}    | ${false}
 `(
-  'isCustomSeparator should return $expected when $input',
+  'isSingleCustomSeparator should return $expected when $input',
   ({ input, expected }) => {
-    const result = isCustomSeparator(input);
+    const result = isSingleCustomSeparator(input);
     expect(result).toBe(expected);
   },
 );

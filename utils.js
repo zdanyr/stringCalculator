@@ -1,6 +1,6 @@
-function isCustomSeparator(input) {
-  const isCustomSeparatorFormat = /^\/\/.\n/; //Eg. //;\n1;2;7  //-\n1-2
-  return isCustomSeparatorFormat.test(input);
+function isSingleCustomSeparator(input) {
+  const isSingleCustomSeparatorFormat = /^\/\/.\n/; //Eg. //;\n1;2;7  //-\n1-2
+  return isSingleCustomSeparatorFormat.test(input);
 }
 
 function isCommaOrBreakLineSeparator(input) {
@@ -14,7 +14,7 @@ function isOneOrManyCustomDelimitersAnyLength(userInput) {
 }
 
 module.exports = {
-  isCustomSeparator,
+  isSingleCustomSeparator,
   isCommaOrBreakLineSeparator,
   isOneOrManyCustomDelimitersAnyLength,
 };
