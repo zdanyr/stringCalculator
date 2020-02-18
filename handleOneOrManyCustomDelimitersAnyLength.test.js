@@ -6,7 +6,6 @@ const {
   findCustomDelimiter,
   splitInputReturnBeforeBreakLine,
   findAllDelimitersFromInput,
-  handleInputAfterBreakLine,
 } = require('./handleOneOrManyCustomDelimitersAnyLength');
 
 test.each`
