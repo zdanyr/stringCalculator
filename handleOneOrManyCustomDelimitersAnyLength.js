@@ -6,6 +6,11 @@ const { sum } = require('./add');
 
 let inputBeforeBreakLineAsArray = new Array();
 
+function isOneOrManyCustomDelimitersAnyLength(userInput) {
+  const isManyCustomSeparatorsAnyLengthFormat = /^\/\/(\[.+\])+\n/;
+  return isManyCustomSeparatorsAnyLengthFormat.test(userInput);
+}
+
 function handleOneOrManyCustomDelimitersAnyLength(userInput) {
   let customDelimiters = handleInputBeforeBreakLine(userInput);
   let numbersAsArray = handleInputAfterBreakLine(userInput, customDelimiters);
@@ -99,6 +104,7 @@ function escapeRegExp(string) {
 }
 
 module.exports = {
+  isOneOrManyCustomDelimitersAnyLength,
   handleOneOrManyCustomDelimitersAnyLength,
   removeCustomDelimiterFromInput,
   removeAllCustomDelimitersFromInput,
