@@ -17,7 +17,7 @@ const {
 } = require('./handleOneOrManyCustomDelimitersAnyLength');
 
 function cleanUpInput(input) {
-  let arrayOfNumbers = 0;
+  let arrayOfNumbers;
 
   if (input === '') {
     arrayOfNumbers = 0;

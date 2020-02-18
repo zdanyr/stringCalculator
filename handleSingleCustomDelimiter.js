@@ -1,3 +1,5 @@
+const { splitInputReturnAfterBreakLine } = require('./utils');
+
 function handleSingleCustomDelimiter(userInput) {
   let userCustomDelimiter = findDelimiter(userInput);
   let inputToSum = splitInputReturnAfterBreakLine(userInput);
@@ -12,10 +14,6 @@ function findDelimiter(userInput) {
   return userInput.substr(2, 1);
 }
 
-function splitInputReturnAfterBreakLine(userInput) {
-  return userInput.substr(userInput.indexOf('\n') + 1);
-}
-
 function convertInputWithCustomSeparatorIntoArray(
   toConvertIntoArray,
   usingDelimiter,
@@ -27,6 +25,5 @@ function convertInputWithCustomSeparatorIntoArray(
 module.exports = {
   handleSingleCustomDelimiter,
   findDelimiter,
-  splitInputReturnAfterBreakLine,
   convertInputWithCustomSeparatorIntoArray,
 };

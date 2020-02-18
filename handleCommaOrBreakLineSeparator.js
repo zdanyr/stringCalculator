@@ -3,4 +3,5 @@ function handleCommaOrBreakLineSeparator(input) {
   let numbers = inputWithoutBreakLine.split(',');
   return numbers;
 }
+
 module.exports = { handleCommaOrBreakLineSeparator };

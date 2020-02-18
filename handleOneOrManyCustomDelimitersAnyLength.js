@@ -1,6 +1,7 @@
 const {
   splitInputReturnAfterBreakLine,
-} = require('./splitInputReturnAfterBreakLine');
+  splitInputReturnBeforeBreakLine,
+} = require('./utils');
 const { sum } = require('./add');
 
 let inputBeforeBreakLineAsArray = new Array();
@@ -47,11 +48,6 @@ function findAllDelimitersFromInput(inputBeforeBreakLineAsArray) {
     );
   }
   return customDelimiter;
-}
-
-function splitInputReturnBeforeBreakLine(userInput) {
-  let positionOfSlashN = userInput.indexOf('\n');
-  return userInput.substr(0, positionOfSlashN + 1);
 }
 
 function findCustomDelimiter(inputBeforeBreakAsArray) {
@@ -109,7 +105,6 @@ module.exports = {
   handleInputAfterBreakLine,
   replaceCustomDelimiterWithEmptySpace,
   findCustomDelimiter,
-  splitInputReturnBeforeBreakLine,
   findAllDelimitersFromInput,
   handleInputAfterBreakLine,
 };

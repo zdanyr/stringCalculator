@@ -4,7 +4,6 @@ const {
   removeAllCustomDelimitersFromInput,
   replaceCustomDelimiterWithEmptySpace,
   findCustomDelimiter,
-  splitInputReturnBeforeBreakLine,
   findAllDelimitersFromInput,
 } = require('./handleOneOrManyCustomDelimitersAnyLength');
 
@@ -18,15 +17,6 @@ test.each`
     expect([...result]).toMatchObject(expected);
   },
 );
-
-it.each`
-  input                          | expected
-  ${'//[/1*][%]\n1/1*2%3'}       | ${'//[/1*][%]\n'}
-  ${'//[***][#][%]\n10***2#3%4'} | ${'//[***][#][%]\n'}
-`('splitInputReturnBeforeBreakLine', ({ input, expected }) => {
-  const result = splitInputReturnBeforeBreakLine(input);
-  expect(result).toBe(expected);
-});
 
 test.each`
   input             | expected
