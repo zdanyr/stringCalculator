@@ -1,5 +1,10 @@
 const { splitInputReturnAfterBreakLine } = require('./utils');
 
+function isSingleCustomSeparator(input) {
+  const isSingleCustomSeparatorFormat = /^\/\/.\n/; //Eg. //;\n1;2;7  //-\n1-2
+  return isSingleCustomSeparatorFormat.test(input);
+}
+
 function handleSingleCustomDelimiter(userInput) {
   let userCustomDelimiter = findDelimiter(userInput);
   let inputToSum = splitInputReturnAfterBreakLine(userInput);
@@ -23,6 +28,7 @@ function convertInputWithCustomSeparatorIntoArray(
 }
 
 module.exports = {
+  isSingleCustomSeparator,
   handleSingleCustomDelimiter,
   findDelimiter,
   convertInputWithCustomSeparatorIntoArray,

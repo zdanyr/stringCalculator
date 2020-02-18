@@ -1,5 +1,4 @@
 const {
-  isSingleCustomSeparator,
   isCommaOrBreakLineSeparator,
   isOneOrManyCustomDelimitersAnyLength,
 } = require('./utils');
@@ -9,6 +8,7 @@ const {
 } = require('./handleCommaOrBreakLineSeparator');
 
 const {
+  isSingleCustomSeparator,
   handleSingleCustomDelimiter,
 } = require('./handleSingleCustomDelimiter');
 
