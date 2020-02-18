@@ -2,9 +2,6 @@ const {
   splitInputReturnAfterBreakLine,
   splitInputReturnBeforeBreakLine,
 } = require('./utils');
-const { sum } = require('./add');
-
-let inputBeforeBreakLineAsArray = new Array();
 
 function isOneOrManyCustomDelimitersAnyLength(userInput) {
   const isManyCustomSeparatorsAnyLengthFormat = /^\/\/(\[.+\])+\n/;
