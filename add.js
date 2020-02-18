@@ -6,9 +6,11 @@ const {
   handleOneOrManyCustomDelimitersAnyLength,
 } = require('./handleOneOrManyCustomDelimitersAnyLength');
 
-const { isCustomSeparator, isCommaOrBreakLineSeparator } = require('./utils');
-
-isManyCustomSeparatorsAnyLengthFormat = /^\/\/(\[.+\])+\n/;
+const {
+  isCustomSeparator,
+  isCommaOrBreakLineSeparator,
+  isOneOrManyCustomDelimitersAnyLength,
+} = require('./utils');
 
 function add(input) {
   const arrayOfNumbers = cleanUpInput(input);
@@ -35,10 +37,6 @@ function cleanUpInput(input) {
   }
 
   return arrayOfNumbers;
-}
-
-function isOneOrManyCustomDelimitersAnyLength(userInput) {
-  return isManyCustomSeparatorsAnyLengthFormat.test(userInput);
 }
 
 function sum(numbers) {
@@ -89,5 +87,4 @@ module.exports = {
   splitInputReturnAfterBreakLine,
   inputToArrayCommaBackSlashSeparator,
   convertInputWithCustomSeparatorIntoArray,
-  isOneOrManyCustomDelimitersAnyLength,
 };

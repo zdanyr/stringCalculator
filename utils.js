@@ -8,7 +8,13 @@ function isCommaOrBreakLineSeparator(input) {
   return isCommaOrBreakLineSeparatorFormat.test(input);
 }
 
+function isOneOrManyCustomDelimitersAnyLength(userInput) {
+  const isManyCustomSeparatorsAnyLengthFormat = /^\/\/(\[.+\])+\n/;
+  return isManyCustomSeparatorsAnyLengthFormat.test(userInput);
+}
+
 module.exports = {
   isCustomSeparator,
   isCommaOrBreakLineSeparator,
+  isOneOrManyCustomDelimitersAnyLength,
 };

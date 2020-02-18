@@ -4,7 +4,6 @@ const {
   inputToArrayCommaBackSlashSeparator,
   findDelimiter,
   convertInputWithCustomSeparatorIntoArray,
-  isOneOrManyCustomDelimitersAnyLength,
 } = require('./add');
 
 test('Empty string should return zero ', () => {
@@ -79,18 +78,6 @@ test.each`
   ({ input, delimiter, expected }) => {
     const result = convertInputWithCustomSeparatorIntoArray(input, delimiter);
     expect([...result]).toMatchObject(expected);
-  },
-);
-
-test.each`
-  input                            | expected
-  ${'//[a][b][c][d]\n1a2a3b3c4d5'} | ${true}
-  ${'//-\n1-2-9'}                  | ${false}
-`(
-  'isOneOrManyCustomDelimitersAnyLength returns $expected when $input',
-  ({ input, expected }) => {
-    const result = isOneOrManyCustomDelimitersAnyLength(input);
-    expect(result).toBe(expected);
   },
 );
 
