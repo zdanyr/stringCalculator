@@ -37,6 +37,6 @@ test.each`
   'returns $expected when $input should be converted in array using custom delimiter',
   ({ input, delimiter, expected }) => {
     const result = convertInputWithCustomSeparatorIntoArray(input, delimiter);
-    expect([...result]).toMatchObject(expected);
+    expect(result).toStrictEqual(expected);
   },
 );

@@ -40,6 +40,16 @@ function handleInputAfterBreakLine(userInput, customDelimiters) {
   return inputSeparatedByComma;
 }
 
+function findCustomDelimiter(inputBeforeBreakAsArray) {
+  let openBracket = inputBeforeBreakAsArray.indexOf('[');
+  let closeBracket = inputBeforeBreakAsArray.indexOf(']');
+  let customDelimiter = inputBeforeBreakAsArray.slice(
+    openBracket + 1,
+    closeBracket,
+  );
+  return customDelimiter.join('');
+}
+
 function findAllDelimitersFromInput(inputBeforeBreakLineAsArray) {
   let customDelimiter = new Array();
   for (let i = 0; i < inputBeforeBreakLineAsArray.length; i++) {
@@ -52,16 +62,6 @@ function findAllDelimitersFromInput(inputBeforeBreakLineAsArray) {
   return customDelimiter;
 }
 
-function findCustomDelimiter(inputBeforeBreakAsArray) {
-  let openBracket = inputBeforeBreakAsArray.indexOf('[');
-  let closeBracket = inputBeforeBreakAsArray.indexOf(']');
-  let customDelimiter = inputBeforeBreakAsArray.slice(
-    openBracket + 1,
-    closeBracket,
-  );
-  return customDelimiter.join('');
-}
-
 function replaceCustomDelimiterWithEmptySpace(
   userInputCommaSeparated,
   customDelimiter,
@@ -71,13 +71,6 @@ function replaceCustomDelimiterWithEmptySpace(
   return userInputAsString
     .slice(positionOfCustomDelimiter + customDelimiter.length + 1)
     .split('');
-}
-
-function removeAllCustomDelimitersFromInput(numbers, customDelimiters) {
-  for (let i = 0; i < customDelimiters.length; i++) {
-    numbers = removeCustomDelimiterFromInput(numbers, customDelimiters[i]);
-  }
-  return numbers;
 }
 
 function removeCustomDelimiterFromInput(
@@ -95,6 +88,14 @@ function removeCustomDelimiterFromInput(
   );
   return userInputWithManyDelimiters;
 }
+
+function removeAllCustomDelimitersFromInput(numbers, customDelimiters) {
+  for (let i = 0; i < customDelimiters.length; i++) {
+    numbers = removeCustomDelimiterFromInput(numbers, customDelimiters[i]);
+  }
+  return numbers;
+}
+
 //no tested
 function escapeRegExp(string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
