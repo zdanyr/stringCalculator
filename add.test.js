@@ -33,12 +33,6 @@ test.each`
   expect(result).toBe(expected);
 });
 
-test('should return sum of elements', () => {
-  const toSum = [1, 2, 3, 4];
-  const result = sum(toSum);
-  expect(result).toBe(10);
-});
-
 test.each`
   input                          | expected
   ${'//[*][%]\n1*2%3'}           | ${6}
@@ -54,3 +48,14 @@ test.each`
     expect(result).toBe(expected);
   },
 );
+
+test.each`
+  toSum           | expected
+  ${[0]}          | ${0}
+  ${[1]}          | ${1}
+  ${[1, 2, 4]}    | ${7}
+  ${[1, 2, 3, 4]} | ${10}
+`('sum returns $expected when $toSum', ({ toSum, expected }) => {
+  const result = sum(toSum);
+  expect(result).toBe(expected);
+});
