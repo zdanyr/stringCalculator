@@ -7,6 +7,7 @@ const {
   findCustomDelimiter,
   findAllDelimitersFromInput,
   handleInputAfterBreakLine,
+  handleInputBeforeBreakLine,
 } = require('./handleOneOrManyCustomDelimitersAnyLength');
 
 test.each`
@@ -106,3 +107,16 @@ it.each`
   const result = handleInputAfterBreakLine(input, customDelimiters);
   expect([...result]).toMatchObject(expected);
 });
+
+it.each`
+  input                          | expected
+  ${'//[***]\n1***2***3'}        | ${['***']}
+  ${'//[**1*][%%]\n1**1*2%%3'}   | ${['**1*', '%%']}
+  ${'//[***][#][%]\n10***2#3%4'} | ${['***', '#', '%']}
+`(
+  'handleInputBeforeBreakLine should return $expected when $input',
+  ({ input, expected }) => {
+    const result = handleInputBeforeBreakLine(input);
+    expect(result).toStrictEqual(expected);
+  },
+);

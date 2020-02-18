@@ -14,7 +14,6 @@ function handleOneOrManyCustomDelimitersAnyLength(userInput) {
   return numbersAsArray;
 }
 
-//no tested
 function handleInputBeforeBreakLine(userInput) {
   let inputBeforeBreakLine = splitInputReturnBeforeBreakLine(userInput);
   let inputBeforeBreakLineAsArray = inputBeforeBreakLine.split('');
@@ -104,5 +103,5 @@ module.exports = {
   replaceCustomDelimiterWithEmptySpace,
   findCustomDelimiter,
   findAllDelimitersFromInput,
-  handleInputAfterBreakLine,
+  handleInputBeforeBreakLine,
 };
