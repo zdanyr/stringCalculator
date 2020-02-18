@@ -23,20 +23,14 @@ function handleInputBeforeBreakLine(userInput) {
   );
   return customDelimiters;
 }
-//no tested
+
 function handleInputAfterBreakLine(userInput, customDelimiters) {
-  // console.log(`
-  // userInput: ${userInput}
-  // customDelimiters: ${customDelimiters}
-  // `);
   let numbers = splitInputReturnAfterBreakLine(userInput);
   let inputSeparatedByComma = removeAllCustomDelimitersFromInput(
     numbers,
     customDelimiters,
   );
-
   inputSeparatedByComma = inputSeparatedByComma.split(',');
-  // console.log(`inputSeparatedByComma: ${inputSeparatedByComma}`);
   return inputSeparatedByComma;
 }
 
