@@ -11,23 +11,30 @@ const { isCustomSeparator, isCommaOrBreakLineSeparator } = require('./utils');
 isManyCustomSeparatorsAnyLengthFormat = /^\/\/(\[.+\])+\n/;
 
 function add(input) {
-  let arrayOfNumbers;
+  const arrayOfNumbers = cleanUpInput(input);
+  return sum(arrayOfNumbers);
+}
 
-  if (input === '') return 0;
+function cleanUpInput(input) {
+  let arrayOfNumbers = 0;
+
+  if (input === '') {
+    arrayOfNumbers = 0;
+  }
+
   if (isCustomSeparator(input)) {
     arrayOfNumbers = handleCustomDelimiter(input);
-    return sum(arrayOfNumbers);
   }
 
   if (isOneOrManyCustomDelimitersAnyLength(input)) {
     arrayOfNumbers = handleOneOrManyCustomDelimitersAnyLength(input);
-    return sum(arrayOfNumbers);
   }
 
   if (isCommaOrBreakLineSeparator(input)) {
     arrayOfNumbers = inputToArrayCommaBackSlashSeparator(input);
-    return sum(arrayOfNumbers);
   }
+
+  return arrayOfNumbers;
 }
 
 function isOneOrManyCustomDelimitersAnyLength(userInput) {
@@ -36,6 +43,11 @@ function isOneOrManyCustomDelimitersAnyLength(userInput) {
 
 function sum(numbers) {
   let sum = 0;
+
+  if (numbers === 0) {
+    return 0;
+  }
+
   numbers.forEach(element => {
     sum = sum + parseInt(element);
   });

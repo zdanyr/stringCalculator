@@ -7,8 +7,6 @@ const {
   isOneOrManyCustomDelimitersAnyLength,
 } = require('./add');
 
-const { isCustomSeparator } = require('./utils');
-
 test('Empty string should return zero ', () => {
   const result = add('');
   expect(result).toBe(0);
@@ -59,19 +57,6 @@ test('should return sum of elements', () => {
   const result = sum(toSum);
   expect(result).toBe(10);
 });
-
-test.each`
-  input           | expected
-  ${'//;\n1;2'}   | ${true}
-  ${'//-\n1-2-9'} | ${true}
-  ${'/;\n1;2'}    | ${false}
-`(
-  'should return $expected when $input matches regular expression',
-  ({ input, expected }) => {
-    const result = isCustomSeparator(input);
-    expect(result).toBe(expected);
-  },
-);
 
 test.each`
   input           | expected
