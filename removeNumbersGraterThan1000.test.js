@@ -1,10 +1,3 @@
-/*
-### Step 8 
-Numbers greater or equal to 1000 should be ignored.  
-~~~
-Add("1000,1001,2") > Returns 2
-*/
-
 const {
   hasValueGraterThan1000,
   handleNumbersGraterThan1000,
