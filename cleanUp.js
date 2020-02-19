@@ -13,23 +13,32 @@ const {
   handleOneOrManyCustomDelimitersAnyLength,
 } = require('./handleOneOrManyCustomDelimitersAnyLength');
 
+const {
+  hasValueGraterThan1000,
+  handleNumbersGraterThan1000,
+} = require('./removeNumbersGraterThan1000');
+
 function cleanUpInput(input) {
   let arrayOfNumbers;
 
   if (input === '') {
-    arrayOfNumbers = 0;
+    return (arrayOfNumbers = 0);
+  }
+
+  if (hasValueGraterThan1000(input)) {
+    arrayOfNumbers = handleNumbersGraterThan1000(input);
   }
 
   if (isSingleCustomSeparator(input)) {
-    arrayOfNumbers = handleSingleCustomDelimiter(input);
+    return (arrayOfNumbers = handleSingleCustomDelimiter(input));
   }
 
   if (isOneOrManyCustomDelimitersAnyLength(input)) {
-    arrayOfNumbers = handleOneOrManyCustomDelimitersAnyLength(input);
+    return (arrayOfNumbers = handleOneOrManyCustomDelimitersAnyLength(input));
   }
 
   if (isCommaOrBreakLineSeparator(input)) {
-    arrayOfNumbers = handleCommaOrBreakLineSeparator(input);
+    return (arrayOfNumbers = handleCommaOrBreakLineSeparator(input));
   }
 
   return arrayOfNumbers;
