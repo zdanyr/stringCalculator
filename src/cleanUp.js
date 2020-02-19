@@ -27,6 +27,7 @@ function cleanUpInput(input) {
 
   if (hasValueGraterThan1000(input)) {
     arrayOfNumbers = handleNumbersGraterThan1000(input);
+    return arrayOfNumbers;
   }
 
   if (isSingleCustomSeparator(input)) {

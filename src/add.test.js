@@ -53,6 +53,15 @@ test.each`
 );
 
 test.each`
+  input                        | expected
+  ${'1000,1001,2,2000,1,5000'} | ${3}
+  ${'2,2000,10'}               | ${12}
+`('numbers grater than 1000 should be ignored', ({ input, expected }) => {
+  const result = add(input);
+  expect(result).toBe(expected);
+});
+
+test.each`
   toSum           | expected
   ${[0]}          | ${0}
   ${[1]}          | ${1}
