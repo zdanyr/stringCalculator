@@ -18,8 +18,18 @@ const {
   handleNumbersGraterThan1000,
 } = require('./removeNumbersGraterThan1000');
 
+const {
+  hasNegativeNumbers,
+  handleNegativeNumbers,
+} = require('./handleNegativeNumbers');
+
 function cleanUpInput(input) {
   let arrayOfNumbers;
+
+  if (hasNegativeNumbers(input)) {
+    console.log(`exeption: ${handleNegativeNumbers(input)}`);
+    throw handleNegativeNumbers(input);
+  }
 
   if (input === '') {
     return (arrayOfNumbers = 0);

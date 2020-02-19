@@ -62,6 +62,15 @@ test.each`
 });
 
 test.each`
+  input             | expected
+  ${'1,-20,-30,1'}  | ${'Negatives not allowed: -20, -30'}
+  ${'-1,-20,-30,1'} | ${'Negatives not allowed: -1, -20, -30'}
+`('negative numbers are not allowed', ({ input, expected }) => {
+  const action = () => add(input);
+  expect(action).toThrowError(expected);
+});
+
+test.each`
   toSum           | expected
   ${[0]}          | ${0}
   ${[1]}          | ${1}

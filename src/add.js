@@ -1,5 +1,14 @@
 const { cleanUpInput } = require('./cleanUp');
 
+// function add(input) {
+//   if (!cleanUpInput(input)) {
+//     handleNegativeNumbers(input);
+//   } else {
+//     const arrayOfNumbers = cleanUpInput(input);
+//     return sum(arrayOfNumbers);
+//   }
+// }
+
 function add(input) {
   const arrayOfNumbers = cleanUpInput(input);
   return sum(arrayOfNumbers);
