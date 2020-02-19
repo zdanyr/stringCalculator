@@ -89,9 +89,8 @@ function removeAllCustomDelimitersFromInput(numbers, customDelimiters) {
   return numbers;
 }
 
-//no tested
-function escapeRegExp(string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+function escapeRegExp(input) {
+  return input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
 }
 
 module.exports = {
@@ -104,4 +103,5 @@ module.exports = {
   findCustomDelimiter,
   findAllDelimitersFromInput,
   handleInputBeforeBreakLine,
+  escapeRegExp,
 };
