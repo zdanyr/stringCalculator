@@ -6,6 +6,16 @@ test('Empty string should return zero ', () => {
 });
 
 test.each`
+  input      | expected
+  ${'1'}     | ${1}
+  ${'1,2'}   | ${3}
+  ${'1,2,3'} | ${6}
+`('returns $expected when $input is comma separator', ({ input, expected }) => {
+  const result = add(input);
+  expect(result).toBe(expected);
+});
+
+test.each`
   input           | expected
   ${'1,2\n3'}     | ${6}
   ${'3\n5\n30,9'} | ${47}
@@ -17,18 +27,11 @@ test.each`
   },
 );
 
-test('should support different delimiters', () => {
-  const input = '//;\n1;2';
-  const result = add(input);
-  expect(result).toBe(3);
-});
-
 test.each`
-  input      | expected
-  ${'1'}     | ${1}
-  ${'1,2'}   | ${3}
-  ${'1,2,3'} | ${6}
-`('returns $expected when $input is comma separator', ({ input, expected }) => {
+  input           | expected
+  ${'//;\n1;2'}   | ${3}
+  ${'//-\n1-2-5'} | ${8}
+`('should support single different delimiters', ({ input, expected }) => {
   const result = add(input);
   expect(result).toBe(expected);
 });
