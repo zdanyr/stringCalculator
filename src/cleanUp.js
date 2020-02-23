@@ -27,7 +27,6 @@ function cleanUpInput(input) {
   let arrayOfNumbers;
 
   if (hasNegativeNumbers(input)) {
-    console.log(`exeption: ${handleNegativeNumbers(input)}`);
     throw handleNegativeNumbers(input);
   }
 

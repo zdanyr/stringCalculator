@@ -4,8 +4,8 @@ function isCommaOrBreakLineSeparator(input) {
 }
 
 function handleCommaOrBreakLineSeparator(input) {
-  let inputWithoutBreakLine = input.replace(/\n/g, ',');
-  let numbers = inputWithoutBreakLine.split(',');
+  const inputWithoutBreakLine = input.replace(/\n/g, ',');
+  const numbers = inputWithoutBreakLine.split(',');
   return numbers;
 }
 

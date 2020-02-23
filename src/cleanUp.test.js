@@ -12,9 +12,3 @@ test.each`
   const result = cleanUpInput(input);
   expect(result).toStrictEqual(expected);
 });
-
-// test('cleanUpInput should return $expected when $input', () => {
-//   const input = '1000,1001,2,2000,1,5000';
-//   const result = cleanUpInput(input);
-//   expect(result).toStrictEqual(['2', '1']);
-// });
